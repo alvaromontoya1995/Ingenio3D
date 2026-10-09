@@ -652,9 +652,15 @@ body {
 /* =======================================================
    10. RESPONSIVIDAD
    ======================================================= */
+/* =======================================================
+   DISEÑO RESPONSIVE (ADAPTABLE A DISPOSITIVOS)
+   ======================================================= */
+
+/* Para Tablets y pantallas medianas (menores a 900px) */
 @media (max-width: 900px) {
-    .contenedor-hero, .contenedor-nosotros {
-        flex-direction: column;
+    .contenedor-hero, 
+    .contenedor-nosotros {
+        flex-direction: column; /* Pasa de lado a lado a una sola columna vertical */
         text-align: center;
     }
 
@@ -662,9 +668,35 @@ body {
         font-size: 2.8rem;
     }
 
-    .menu {
+    /* Las tarjetas de productos y servicios pasan a ocupar 2 columnas en lugar de 3 */
+    .tarjeta-producto, 
+    .tarjeta-servicio, 
+    .galeria-contenedor img {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+/* Para Celulares (menores a 600px) */
+@media (max-width: 600px) {
+    .contenedor-encabezado {
+        flex-direction: column;
         gap: 15px;
+    }
+
+    .menu {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px 15px; /* Menú de navegación más compacto y centrado */
+    }
+
+    /* En celulares muy estrechos, todo pasa a una sola columna (100% de ancho) */
+    .tarjeta-producto, 
+    .tarjeta-servicio, 
+    .galeria-contenedor img {
+        flex: 1 1 100%;
+    }
+
+    .contacto-contenedor {
+        padding: 25px 20px;
     }
 }
