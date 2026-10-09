@@ -1,0 +1,515 @@
+/* =======================================================
+   1. VARIABLES DE IDENTIDAD VISUAL Y ESTILOS GENERALES
+   ======================================================= */
+:root {
+    /* Paleta corporativa */
+    --color-principal: #0b1b3d;        /* Azul oscuro */
+    --color-secundario: #0284c7;       /* Azul claro */
+    --color-neon-oscuro: #0055ff;      /* Azul neón oscuro */
+    --color-neon-claro: #00f0ff;       /* Azul neón claro */
+    --color-fondo: #ffffff;            /* Blanco */
+    --color-fondo-suave: #f8fafc;      /* Blanco grisáceo para alternar secciones */
+    --color-texto: #334155;            /* Texto legibilidad alta */
+    --color-texto-claro: #ffffff;      /* Texto sobre fondo oscuro */
+}
+
+/* Reset básico del modelo de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    line-height: 1.6;
+}
+
+/* Tipografía especificada para títulos */
+h1, h2, h3, h4 {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Contenedor centralizado para mantener márgenes uniformes */
+.contenedor {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.titulo-seccion {
+    text-align: center;
+    font-size: 32px;
+    color: var(--color-principal);
+    margin-bottom: 30px;
+}
+
+/* =======================================================
+   2. ENCABEZADO (HEADER) CON FLEXBOX
+   ======================================================= */
+.encabezado {
+    background-color: var(--color-principal);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.contenedor-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h2 {
+    color: var(--color-texto-claro);
+    font-size: 26px;
+}
+
+.logo span {
+    color: var(--color-neon-claro);
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.menu li a {
+    color: var(--color-texto-claro);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu li a:hover {
+    color: var(--color-neon-claro);
+}
+
+/* =======================================================
+   3. SECCIÓN HERO CON FLEXBOX (2 COLUMNAS)
+   ======================================================= */
+.hero {
+    background-color: var(--color-fondo-suave);
+    padding: 60px 0;
+}
+
+.contenedor-hero {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-columna-izquierda {
+    flex: 1;
+}
+
+.hero-columna-izquierda h1 {
+    font-size: 42px;
+    color: var(--color-principal);
+}
+
+.hero-columna-izquierda h2 {
+    font-size: 24px;
+    color: var(--color-secundario);
+    margin-bottom: 15px;
+}
+
+.hero-columna-izquierda p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.boton-accion {
+    display: inline-block;
+    background-color: var(--color-neon-oscuro);
+    color: var(--color-texto-claro);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.boton-accion:hover {
+    background-color: var(--color-secundario);
+}
+
+.hero-columna-derecha {
+    flex: 1;
+}
+
+.hero-columna-derecha img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* =======================================================
+   4. SECCIÓN NOSOTROS CON FLEXBOX
+   ======================================================= */
+.nosotros {
+    padding: 60px 0;
+}
+
+.contenedor-nosotros {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nosotros-imagen {
+    flex: 1;
+}
+
+.nosotros-imagen img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.nosotros-texto {
+    flex: 1;
+}
+
+.nosotros-texto h2 {
+    font-size: 30px;
+    color: var(--color-principal);
+    margin-bottom: 15px;
+}
+
+.nosotros-texto p {
+    margin-bottom: 15px;
+}
+
+/* =======================================================
+   5. SECCIÓN PRODUCTOS (TARJETAS CON FLEXBOX)
+   ======================================================= */
+.productos {
+    background-color: var(--color-fondo-suave);
+    padding: 60px 0;
+}
+
+.productos-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarjeta-producto {
+    background-color: var(--color-fondo);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-producto:hover {
+    border-color: var(--color-neon-claro);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-producto img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-producto h3 {
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.tarjeta-producto p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-producto .precio {
+    font-weight: bold;
+    color: var(--color-secundario);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.boton-tarjeta {
+    display: block;
+    text-align: center;
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.boton-tarjeta:hover {
+    background-color: var(--color-neon-oscuro);
+}
+
+/* =======================================================
+   6. SECCIÓN BENEFICIOS / SERVICIOS
+   ======================================================= */
+.servicios {
+    padding: 60px 0;
+}
+
+.servicios-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarjeta-servicio {
+    background-color: var(--color-fondo-suave);
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 250px;
+    text-align: center;
+}
+
+.icono-servicio {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-servicio h3 {
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.tarjeta-servicio p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.boton-servicio {
+    display: inline-block;
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.boton-servicio:hover {
+    background-color: var(--color-principal);
+}
+
+/* =======================================================
+   7. SECCIÓN TABLA
+   ======================================================= */
+.tarifas {
+    background-color: var(--color-fondo-suave);
+    padding: 60px 0;
+}
+
+.tabla-contenedor {
+    width: 100%;
+}
+
+.tabla-precios {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-precios th, 
+.tabla-precios td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tabla-precios th {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+}
+
+.tabla-precios tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* =======================================================
+   8. SECCIÓN GALERÍA CON FLEXBOX
+   ======================================================= */
+.galeria {
+    padding: 60px 0;
+}
+
+.galeria-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.galeria-contenedor img {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 250px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.galeria-contenedor img:hover {
+    opacity: 0.85;
+}
+
+/* =======================================================
+   9. SECCIÓN FORMULARIO DE CONTACTO
+   ======================================================= */
+.contacto {
+    background-color: var(--color-fondo-suave);
+    padding: 60px 0;
+}
+
+.contacto-contenedor {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--color-fondo);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formulario-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.grupo-campo label {
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+.grupo-campo input, 
+.grupo-campo select, 
+.grupo-campo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+
+.boton-enviar {
+    background-color: var(--color-neon-oscuro);
+    color: var(--color-texto-claro);
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-enviar:hover {
+    background-color: var(--color-principal);
+}
+
+/* =======================================================
+   10. PIE DE PÁGINA (FOOTER) CON FLEXBOX
+   ======================================================= */
+.pie-pagina {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+    padding: 40px 0 20px 0;
+}
+
+.contenedor-pie {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.columna-pie {
+    flex: 1 1 250px;
+}
+
+.columna-pie h3 {
+    color: var(--color-neon-claro);
+    margin-bottom: 10px;
+}
+
+.columna-pie h4 {
+    color: var(--color-secundario);
+    margin-bottom: 10px;
+}
+
+.derechos-reservados {
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+/* =======================================================
+   11. DISEÑO RESPONSIVE CON MEDIA QUERIES (TABLETS Y MÓVILES)
+   ======================================================= */
+@media (max-width: 768px) {
+    /* Menú pasa de horizontal a vertical */
+    .contenedor-encabezado {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Hero pasa de 2 columnas a 1 columna */
+    .contenedor-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Nosotros pasa de 2 columnas a 1 columna */
+    .contenedor-nosotros {
+        flex-direction: column;
+    }
+
+    /* Tarjetas y Galería se reordenan a 1 columna completa */
+    .tarjeta-producto, 
+    .tarjeta-servicio, 
+    .galeria-contenedor img {
+        flex: 1 1 100%;
+    }
+
+    /* Permite desplazarse horizontalmente si la tabla supera el ancho */
+    .tabla-contenedor {
+        overflow-x: auto;
+    }
+
+    /* Footer reorganizado verticalmente */
+    .contenedor-pie {
+        flex-direction: column;
+        text-align: center;
+    }
+}
