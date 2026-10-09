@@ -1,60 +1,95 @@
 /* =======================================================
-   1. VARIABLES DE IDENTIDAD VISUAL Y ESTILOS GENERALES
+   INGENIO 3D - ESTILO ELEGANTE, ARTÍSTICO Y PROLIJO (PURE CSS)
    ======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-    /* Paleta corporativa */
-    --color-principal: #0b1b3d;        /* Azul oscuro */
-    --color-secundario: #0284c7;       /* Azul claro */
-    --color-neon-oscuro: #0055ff;      /* Azul neón oscuro */
-    --color-neon-claro: #00f0ff;       /* Azul neón claro */
-    --color-fondo: #ffffff;            /* Blanco */
-    --color-fondo-suave: #f8fafc;      /* Blanco grisáceo para alternar secciones */
-    --color-texto: #334155;            /* Texto legibilidad alta */
-    --color-texto-claro: #ffffff;      /* Texto sobre fondo oscuro */
+    /* Paleta Artística Cyber-Dark */
+    --bg-dark: #070a12;
+    --bg-card: rgba(15, 23, 42, 0.65);
+    --bg-card-hover: rgba(24, 34, 60, 0.85);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-active: rgba(0, 240, 255, 0.4);
+    
+    /* Colores Neón & Acentos */
+    --neon-cyan: #00f0ff;
+    --neon-blue: #0066ff;
+    --accent-purple: #7000ff;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    /* Efectos Visuales */
+    --shadow-glow: 0 0 25px rgba(0, 240, 255, 0.15);
+    --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset básico del modelo de caja */
+/* Reset y Bases */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    color: var(--color-texto);
-    background-color: var(--color-fondo);
-    line-height: 1.6;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 102, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(112, 0, 255, 0.08) 0%, transparent 40%);
+    background-attachment: fixed;
 }
 
-/* Tipografía especificada para títulos */
-h1, h2, h3, h4 {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-/* Contenedor centralizado para mantener márgenes uniformes */
+/* Contenedor Principal */
 .contenedor {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Títulos Artísticos de Sección */
 .titulo-seccion {
     text-align: center;
-    font-size: 32px;
-    color: var(--color-principal);
-    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 50px;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+.titulo-seccion::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue));
+    margin: 15px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--neon-cyan);
 }
 
 /* =======================================================
-   2. ENCABEZADO (HEADER) CON FLEXBOX
+   1. ENCABEZADO (HEADER) GLASSMORPHISM
    ======================================================= */
 .encabezado {
-    background-color: var(--color-principal);
-    padding: 20px 0;
+    background: rgba(7, 10, 18, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-glass);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    padding: 18px 0;
 }
 
 .contenedor-encabezado {
@@ -64,42 +99,65 @@ h1, h2, h3, h4 {
 }
 
 .logo h2 {
-    color: var(--color-texto-claro);
-    font-size: 26px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
 }
 
 .logo span {
-    color: var(--color-neon-claro);
+    color: var(--neon-cyan);
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
 }
 
 .menu {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 30px;
 }
 
 .menu li a {
-    color: var(--color-texto-claro);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--neon-cyan);
+    transition: var(--transition);
+    box-shadow: 0 0 8px var(--neon-cyan);
 }
 
 .menu li a:hover {
-    color: var(--color-neon-claro);
+    color: var(--text-primary);
+}
+
+.menu li a:hover::after {
+    width: 100%;
 }
 
 /* =======================================================
-   3. SECCIÓN HERO CON FLEXBOX (2 COLUMNAS)
+   2. SECCIÓN HERO DE IMPACTO
    ======================================================= */
 .hero {
-    background-color: var(--color-fondo-suave);
-    padding: 60px 0;
+    padding: 120px 0 90px;
+    position: relative;
 }
 
 .contenedor-hero {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 60px;
 }
 
 .hero-columna-izquierda {
@@ -107,58 +165,84 @@ h1, h2, h3, h4 {
 }
 
 .hero-columna-izquierda h1 {
-    font-size: 42px;
-    color: var(--color-principal);
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 30%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
 .hero-columna-izquierda h2 {
-    font-size: 24px;
-    color: var(--color-secundario);
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
 .hero-columna-izquierda p {
-    font-size: 16px;
-    margin-bottom: 25px;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 35px;
+    max-width: 520px;
 }
 
 .boton-accion {
     display: inline-block;
-    background-color: var(--color-neon-oscuro);
-    color: var(--color-texto-claro);
-    padding: 12px 25px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--accent-purple));
+    color: #fff;
+    padding: 14px 32px;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .boton-accion:hover {
-    background-color: var(--color-secundario);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 102, 255, 0.5);
+    border-color: var(--neon-cyan);
 }
 
 .hero-columna-derecha {
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-columna-derecha img {
     width: 100%;
-    max-width: 100%;
+    max-width: 480px;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+}
+
+.hero-columna-derecha img:hover {
+    border-color: var(--border-active);
+    box-shadow: var(--shadow-glow);
+    transform: scale(1.02);
 }
 
 /* =======================================================
-   4. SECCIÓN NOSOTROS CON FLEXBOX
+   3. NOSOTROS
    ======================================================= */
 .nosotros {
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .contenedor-nosotros {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 60px;
 }
 
 .nosotros-imagen {
@@ -167,9 +251,9 @@ h1, h2, h3, h4 {
 
 .nosotros-imagen img {
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
+    border-radius: 16px;
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-card);
 }
 
 .nosotros-texto {
@@ -177,339 +261,410 @@ h1, h2, h3, h4 {
 }
 
 .nosotros-texto h2 {
-    font-size: 30px;
-    color: var(--color-principal);
-    margin-bottom: 15px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--text-primary);
 }
 
 .nosotros-texto p {
-    margin-bottom: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+    font-size: 1rem;
+}
+
+.nosotros-texto strong {
+    color: var(--neon-cyan);
 }
 
 /* =======================================================
-   5. SECCIÓN PRODUCTOS (TARJETAS CON FLEXBOX)
+   4. PRODUCTOS (TARJETAS CON EXHIBICIÓN PROLIJA DE IMÁGENES)
    ======================================================= */
 .productos {
-    background-color: var(--color-fondo-suave);
-    padding: 60px 0;
+    padding: 100px 0;
+    background: rgba(255, 255, 255, 0.01);
 }
 
 .productos-contenedor {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .tarjeta-producto {
-    background-color: var(--color-fondo);
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 20px;
-    flex: 1 1 calc(33.333% - 20px);
-    min-width: 250px;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    position: relative;
 }
 
 .tarjeta-producto:hover {
-    border-color: var(--color-neon-claro);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: var(--bg-card-hover);
+    border-color: var(--border-active);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-glow);
 }
 
+/* Vitrina adaptable para que la imagen NUNCA se corte */
 .tarjeta-producto img {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    height: 220px;
+    object-fit: contain; /* Garantiza mostrar la pieza entera */
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: var(--transition);
+}
+
+.tarjeta-producto:hover img {
+    transform: scale(1.04);
+    background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, rgba(0,0,0,0.3) 100%);
 }
 
 .tarjeta-producto h3 {
-    color: var(--color-principal);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 10px;
 }
 
 .tarjeta-producto p {
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .tarjeta-producto .precio {
-    font-weight: bold;
-    color: var(--color-secundario);
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    margin-bottom: 20px;
     display: block;
 }
 
 .boton-tarjeta {
     display: block;
     text-align: center;
-    background-color: var(--color-principal);
-    color: var(--color-texto-claro);
-    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    padding: 12px;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-glass);
+    transition: var(--transition);
 }
 
 .boton-tarjeta:hover {
-    background-color: var(--color-neon-oscuro);
+    background: var(--neon-blue);
+    border-color: var(--neon-cyan);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
 }
 
 /* =======================================================
-   6. SECCIÓN BENEFICIOS / SERVICIOS
+   5. SERVICIOS / BENEFICIOS
    ======================================================= */
 .servicios {
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .servicios-contenedor {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .tarjeta-servicio {
-    background-color: var(--color-fondo-suave);
-    padding: 30px;
-    border-radius: 8px;
-    flex: 1 1 calc(33.333% - 20px);
-    min-width: 250px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 40px 30px;
+    border-radius: 16px;
     text-align: center;
+    transition: var(--transition);
+}
+
+.tarjeta-servicio:hover {
+    border-color: var(--border-active);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glow);
 }
 
 .icono-servicio {
-    font-size: 40px;
-    margin-bottom: 15px;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px var(--neon-cyan));
 }
 
-.tarjeta-servicio h3 {
-    color: var(--color-principal);
-    margin-bottom: 10px;
+.icono-servicio {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 50%;
+    color: var(--neon-cyan);
+    transition: var(--transition);
+}
+
+.tarjeta-servicio:hover .icono-servicio {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--neon-cyan);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.icono-servicio svg {
+    transition: var(--transition);
 }
 
 .tarjeta-servicio p {
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
 }
 
 .boton-servicio {
     display: inline-block;
-    background-color: var(--color-secundario);
-    color: var(--color-texto-claro);
-    padding: 8px 16px;
+    color: var(--neon-cyan);
     text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
 }
 
 .boton-servicio:hover {
-    background-color: var(--color-principal);
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px var(--neon-cyan);
 }
 
 /* =======================================================
-   7. SECCIÓN TABLA
+   6. TARIFAS / TABLA PROLIJA
    ======================================================= */
 .tarifas {
-    background-color: var(--color-fondo-suave);
-    padding: 60px 0;
+    padding: 100px 0;
+    background: rgba(255, 255, 255, 0.01);
 }
 
 .tabla-contenedor {
     width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-card);
 }
 
 .tabla-precios {
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--color-fondo);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: var(--bg-card);
+    text-align: left;
 }
 
 .tabla-precios th, 
 .tabla-precios td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-glass);
 }
 
 .tabla-precios th {
-    background-color: var(--color-principal);
-    color: var(--color-texto-claro);
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--neon-cyan);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
-.tabla-precios tr:hover {
-    background-color: #f1f5f9;
+.tabla-precios td {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.tabla-precios tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-primary);
 }
 
 /* =======================================================
-   8. SECCIÓN GALERÍA CON FLEXBOX
+   7. GALERÍA ARTÍSTICA
    ======================================================= */
 .galeria {
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .galeria-contenedor {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
 }
 
 .galeria-contenedor img {
-    flex: 1 1 calc(33.333% - 20px);
-    min-width: 250px;
-    height: 220px;
+    width: 100%;
+    height: 250px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 14px;
+    border: 1px solid var(--border-glass);
+    transition: var(--transition);
 }
 
 .galeria-contenedor img:hover {
-    opacity: 0.85;
+    transform: scale(1.03);
+    border-color: var(--border-active);
+    box-shadow: var(--shadow-glow);
 }
 
 /* =======================================================
-   9. SECCIÓN FORMULARIO DE CONTACTO
+   8. FORMULARIO DE CONTACTO
    ======================================================= */
 .contacto {
-    background-color: var(--color-fondo-suave);
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .contacto-contenedor {
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
-    background-color: var(--color-fondo);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
 }
 
 .formulario-contacto {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 22px;
 }
 
 .grupo-campo {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
 .grupo-campo label {
-    font-weight: bold;
-    color: var(--color-principal);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
 }
 
 .grupo-campo input, 
 .grupo-campo select, 
 .grupo-campo textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
-    font-family: Arial, sans-serif;
+    padding: 14px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.grupo-campo input:focus, 
+.grupo-campo select:focus, 
+.grupo-campo textarea:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .boton-enviar {
-    background-color: var(--color-neon-oscuro);
-    color: var(--color-texto-claro);
-    padding: 12px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--accent-purple));
+    color: #fff;
+    padding: 16px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
 }
 
 .boton-enviar:hover {
-    background-color: var(--color-principal);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.4);
 }
 
 /* =======================================================
-   10. PIE DE PÁGINA (FOOTER) CON FLEXBOX
+   9. PIE DE PÁGINA (FOOTER)
    ======================================================= */
 .pie-pagina {
-    background-color: var(--color-principal);
-    color: var(--color-texto-claro);
-    padding: 40px 0 20px 0;
+    border-top: 1px solid var(--border-glass);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 60px 0 30px;
 }
 
 .contenedor-pie {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.columna-pie {
-    flex: 1 1 250px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
 }
 
 .columna-pie h3 {
-    color: var(--color-neon-claro);
-    margin-bottom: 10px;
+    color: var(--neon-cyan);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
 }
 
 .columna-pie h4 {
-    color: var(--color-secundario);
-    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.columna-pie p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
 }
 
 .derechos-reservados {
     text-align: center;
-    border-top: 1px solid #1e293b;
-    padding-top: 15px;
-    font-size: 14px;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 25px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
 
 /* =======================================================
-   11. DISEÑO RESPONSIVE CON MEDIA QUERIES (TABLETS Y MÓVILES)
+   10. RESPONSIVIDAD
    ======================================================= */
-@media (max-width: 768px) {
-    /* Menú pasa de horizontal a vertical */
-    .contenedor-encabezado {
+@media (max-width: 900px) {
+    .contenedor-hero, .contenedor-nosotros {
         flex-direction: column;
-        gap: 15px;
+        text-align: center;
+    }
+
+    .hero-columna-izquierda h1 {
+        font-size: 2.8rem;
     }
 
     .menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    /* Hero pasa de 2 columnas a 1 columna */
-    .contenedor-hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    /* Nosotros pasa de 2 columnas a 1 columna */
-    .contenedor-nosotros {
-        flex-direction: column;
-    }
-
-    /* Tarjetas y Galería se reordenan a 1 columna completa */
-    .tarjeta-producto, 
-    .tarjeta-servicio, 
-    .galeria-contenedor img {
-        flex: 1 1 100%;
-    }
-
-    /* Permite desplazarse horizontalmente si la tabla supera el ancho */
-    .tabla-contenedor {
-        overflow-x: auto;
-    }
-
-    /* Footer reorganizado verticalmente */
-    .contenedor-pie {
-        flex-direction: column;
-        text-align: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
